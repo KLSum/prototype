@@ -1,0 +1,20 @@
+<project name="Prototype" default="deploy" basedir="." xmlns:sf="antlib:com.salesforce">
+
+    <taskdef resource="com/salesforce/antlib.xml"
+             classPath="../../lib/ant-salesforce.jar"
+             uri="antlib:com.salesforce"/>
+			 
+	<property file="build.properties"/>
+	<property environment="env"/>
+  <!-- Shows deploying code & running tests for package 'codepkg' -->
+    <target name="deploy">
+      <!-- Upload the contents of the "codepkg" package, running the tests for just 1 class -->
+      <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" deployroot="test" testLevel="RunSpecifiedTests">
+        <runTest>SampleDeployClass</runTest>
+      </sf:deploy>
+    </target>
+	
+	<target name="retrieve">
+      <sf:retrieve username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" retrieveTarget="test" unpackaged="test/package.xml"/>
+    </target>
+</project>
