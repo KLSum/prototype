@@ -1,0 +1,3 @@
+# Don't change codeowners or individuals' build properties
+CODEOWNERS
+build.properties
